@@ -1,12 +1,16 @@
 ﻿using UnityEngine;
 
-/// <summary>
-/// Круговой радар
-/// </summary>
-public class CircleRadar : AbstractRadar
+namespace RadarComponents
 {
-    public override void OnUpdateRadar()
+    /// <summary>
+    /// Круговой радар
+    /// </summary>
+    public class CircleRadar : AbstractRadar
     {
-        transform.rotation = Quaternion.Euler(0, 0, locator.transform.localEulerAngles.y);
+        public override void OnUpdateRadar()
+        {
+            transform.rotation = Quaternion.Euler(0, 0, locator.transform.localEulerAngles.y);
+        }
     }
 }
+

@@ -1,22 +1,26 @@
 ﻿using UnityEngine.UI;
 using UnityEngine;
 
-[RequireComponent(typeof(RawImage))]
-public class HorizontalCompass : AbstractRadar
+namespace RadarComponents
 {
-    private RawImage compassImage;
-
-    protected override void Awake()
+    [RequireComponent(typeof(RawImage))]
+    public class HorizontalCompass : AbstractRadar
     {
-        compassImage = GetComponent<RawImage>();
-        base.Awake();
-    }
+        private RawImage compassImage;
 
-    public override void OnUpdateRadar()
-    {
-        if (locator != null)
+        protected override void Awake()
         {
-            compassImage.uvRect = new Rect(locator.transform.localEulerAngles.y / 360f, 0f, 1f, 1f);
+            compassImage = GetComponent<RawImage>();
+            base.Awake();
+        }
+
+        public override void OnUpdateRadar()
+        {
+            if (locator != null)
+            {
+                compassImage.uvRect = new Rect(locator.transform.localEulerAngles.y / 360f, 0f, 1f, 1f);
+            }
         }
     }
 }
+

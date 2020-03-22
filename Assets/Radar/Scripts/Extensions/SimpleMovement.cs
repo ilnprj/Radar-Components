@@ -2,6 +2,7 @@
 
 public class SimpleMovement : MonoBehaviour
 {
+    [SerializeField]
     private int speed = 10;
 
     public void FixedUpdate()

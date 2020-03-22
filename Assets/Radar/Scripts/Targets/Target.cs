@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace RadarComponents
 {
@@ -11,9 +10,13 @@ namespace RadarComponents
         //Вот здесь идеальное место для инъекции
         private ITargetManager targetManager;
 
-        private void Awake()
+        [SerializeField]
+        private Sprite targetImage;
+        public Sprite SpriteTarget { get => targetImage; }
+
+        private void Start()
         {
-            
+            targetManager = ContainerTargetManager.TargetManagerContainer;
         }
 
         private void OnEnable()

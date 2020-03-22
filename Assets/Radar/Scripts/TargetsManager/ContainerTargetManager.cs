@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace RadarComponents
 {
@@ -10,7 +8,7 @@ namespace RadarComponents
     /// </summary>
     public class ContainerTargetManager : MonoBehaviour
     {
-        public ITargetManager TargetManagerContainer;
+        public static ITargetManager TargetManagerContainer;
 
         private void Awake()
         {
