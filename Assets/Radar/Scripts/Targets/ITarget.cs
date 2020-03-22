@@ -8,6 +8,8 @@ namespace RadarComponents
     public interface ITarget
     {
         Sprite SpriteTarget { get; }
+        Transform TransformTarget { get;  }
+        string IdTarget { get;  }
 
         void OnTargetEnable();
 

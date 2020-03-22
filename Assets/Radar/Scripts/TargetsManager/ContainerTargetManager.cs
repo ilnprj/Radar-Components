@@ -2,17 +2,21 @@
 
 namespace RadarComponents
 {
-    /// <summary>
-    /// Контейнер хранящий текущую реализацию интерфейса ITargetManager.  
-    /// Можно было бы использовать Zenject для этого дела.
-    /// </summary>
     public class ContainerTargetManager : MonoBehaviour
     {
-        public static ITargetManager TargetManagerContainer;
+        public static ITargetManager targetManager;
 
         private void Awake()
         {
-            TargetManagerContainer = gameObject.AddComponent<TargetManager>();
+            try
+            {
+                targetManager = GetComponent<ITargetManager>();
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError("Необходимо накинуть компонент реализовывающий ITargetManager!");
+                Debug.LogError(e.Message);
+            }
         }
     }
 }

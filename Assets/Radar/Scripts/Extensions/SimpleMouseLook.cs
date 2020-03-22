@@ -3,6 +3,8 @@
 public class SimpleMouseLook : MonoBehaviour
 {
     [SerializeField]
+    private bool isCursorLocked = false;
+    [SerializeField]
     private float mouseSensitivity = 100.0f;
     [SerializeField]
     private float clampAngle = 80.0f;
@@ -15,7 +17,8 @@ public class SimpleMouseLook : MonoBehaviour
         Vector3 rot = transform.localRotation.eulerAngles;
         rotY = rot.y;
         rotX = rot.x;
-        Cursor.lockState = CursorLockMode.Locked;
+
+        Cursor.lockState = isCursorLocked ? CursorLockMode.Locked : CursorLockMode.None;
     }
 
     private void FixedUpdate()

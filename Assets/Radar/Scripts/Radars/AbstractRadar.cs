@@ -5,13 +5,23 @@ namespace RadarComponents
     /// <summary>
     /// Абстрактный класс радара. Работает при обновлении локатора игрока
     /// </summary>
+    [RequireComponent(typeof(ContainerTargetsView))]
     public abstract class AbstractRadar : MonoBehaviour
     {
         protected PlayerLocator locator = null;
+        protected ITargetManager targetManager = null;
+        protected ContainerTargetsView containerViews;
 
         protected virtual void Awake()
         {
             CheckLocator();
+            containerViews = GetComponent<ContainerTargetsView>();
+        }
+
+        protected virtual void Start()
+        {
+            targetManager = ContainerTargetManager.targetManager;
+            containerViews.SetTargetManager(targetManager);
         }
 
         private void CheckLocator()

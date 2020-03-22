@@ -7,17 +7,16 @@ namespace RadarComponents
     /// </summary>
     public class Target :  MonoBehaviour, ITarget
     {
-        //Вот здесь идеальное место для инъекции
-        private ITargetManager targetManager;
-
         [SerializeField]
         private Sprite targetImage;
+
+        [SerializeField]
+        private string idTarget;
         public Sprite SpriteTarget { get => targetImage; }
 
-        private void Start()
-        {
-            targetManager = ContainerTargetManager.TargetManagerContainer;
-        }
+        public Transform TransformTarget => transform;
+
+        public string IdTarget => idTarget;
 
         private void OnEnable()
         {
@@ -29,14 +28,22 @@ namespace RadarComponents
             OnTargetDisable();
         }
 
+        /// <summary>
+        /// Что делаем при активации цели на сцене
+        /// </summary>
         public void OnTargetEnable()
         {
-            
+            if (ContainerTargetManager.targetManager!=null)
+            ContainerTargetManager.targetManager.AddTarget(this);
         }
 
+        /// <summary>
+        /// Что делаем при деактивации цели на сцене (Метод можно вызвать и в случае если цель может быть активна но не используема)
+        /// </summary>
         public void OnTargetDisable()
         {
-           
+            if (ContainerTargetManager.targetManager != null)
+                ContainerTargetManager.targetManager.RemoveTarget(this);
         }
     }
 }
