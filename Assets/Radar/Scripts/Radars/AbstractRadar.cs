@@ -1,43 +1,59 @@
 ﻿using UnityEngine;
 
-/// <summary>
-/// Абстрактный класс радара. Работает при обновлении локатора игрока
-/// </summary>
-public abstract class AbstractRadar : MonoBehaviour
+namespace RadarComponents
 {
-    protected PlayerLocator locator = null;
-
-    protected virtual void Awake()
+    /// <summary>
+    /// Абстрактный класс радара. Работает при обновлении локатора игрока
+    /// </summary>
+    [RequireComponent(typeof(ContainerTargetsView))]
+    public abstract class AbstractRadar : MonoBehaviour
     {
-        CheckLocator();
-    }
+        protected PlayerLocator locator = null;
+        protected ITargetManager targetManager = null;
+        protected ContainerTargetsView containerViews;
 
-    private void CheckLocator()
-    {
-        if (PlayerLocator.IsInited)
+        private ContainerTargetManager containerTargets;
+
+        protected virtual void Awake()
+        {
+            CheckLocator();
+            containerViews = GetComponent<ContainerTargetsView>();
+            containerTargets = FindObjectOfType<ContainerTargetManager>();
+        }
+
+        protected virtual void Start()
+        {
+            targetManager = containerTargets.TargetManager;
+            containerViews.SetTargetManager(targetManager);
+        }
+
+        private void CheckLocator()
+        {
+            if (PlayerLocator.IsInited)
+            {
+                locator = FindObjectOfType<PlayerLocator>();
+            }
+            else
+            {
+                PlayerLocator.onInit += SetLocator;
+            }
+            PlayerLocator.onUpdateLocator += OnUpdateRadar;
+        }
+
+        protected virtual void OnDestroy()
+        {
+            PlayerLocator.onInit -= SetLocator;
+            PlayerLocator.onUpdateLocator -= OnUpdateRadar;
+        }
+
+        private void SetLocator()
         {
             locator = FindObjectOfType<PlayerLocator>();
         }
-        else
-        {
-            PlayerLocator.onInit += SetLocator;
-        }
-        PlayerLocator.onUpdateLocator += OnUpdateRadar;
-    }
 
-    protected virtual void OnDestroy()
-    {
-        PlayerLocator.onInit -= SetLocator;
-        PlayerLocator.onUpdateLocator -= OnUpdateRadar;
+        /// <summary>
+        /// Обновить данные радара в его реализации
+        /// </summary>
+        public abstract void OnUpdateRadar();
     }
-
-    private void SetLocator()
-    {
-        locator = FindObjectOfType<PlayerLocator>();
-    }
-
-    /// <summary>
-    /// Обновить данные радара в его реализации
-    /// </summary>
-    public abstract void OnUpdateRadar();
 }
