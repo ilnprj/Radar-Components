@@ -20,6 +20,7 @@ namespace RadarComponents
             iconTarget.rectTransform.anchoredPosition = new Vector2(0, 0);
             maxSize = iconTarget.rectTransform.sizeDelta.x;
             minSize = maxSize / 2;
+            UpdateViewTarget();
         }
 
         public override void UpdateViewTarget()

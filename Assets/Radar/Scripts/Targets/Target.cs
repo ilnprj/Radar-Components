@@ -5,7 +5,7 @@ namespace RadarComponents
     /// <summary>
     /// Класс цели, регистрирует
     /// </summary>
-    public class Target :  MonoBehaviour, ITarget
+    public class Target : MonoBehaviour, ITarget
     {
         [SerializeField]
         private Sprite targetImage;
@@ -18,14 +18,23 @@ namespace RadarComponents
 
         public string IdTarget => idTarget;
 
+        private ContainerTargetManager container;
+
         private void OnEnable()
         {
-            OnTargetEnable();
+            container = FindObjectOfType<ContainerTargetManager>();
+            if (container.IsInited)
+                OnTargetEnable();
+            else
+            {
+                container.onInit += OnTargetEnable;
+            }
         }
 
         private void OnDisable()
         {
-            OnTargetDisable();
+            container.onInit -= OnTargetEnable;
+            container.TargetManager.RemoveTarget(this);
         }
 
         /// <summary>
@@ -33,8 +42,7 @@ namespace RadarComponents
         /// </summary>
         public void OnTargetEnable()
         {
-            if (ContainerTargetManager.targetManager!=null)
-            ContainerTargetManager.targetManager.AddTarget(this);
+            container.TargetManager.AddTarget(this);
         }
 
         /// <summary>
@@ -42,8 +50,7 @@ namespace RadarComponents
         /// </summary>
         public void OnTargetDisable()
         {
-            if (ContainerTargetManager.targetManager != null)
-                ContainerTargetManager.targetManager.RemoveTarget(this);
+          
         }
     }
 }

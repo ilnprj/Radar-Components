@@ -21,6 +21,10 @@ namespace RadarComponents
 
         public PlayerLocator locator;
 
+        /// <summary>
+        /// Инициализация контейнера с View. Здесь получаем все цели из TargetManager'a и создаем их отображение на компасе
+        /// </summary>
+        /// <param name="inputTargetManager"></param>
         public void SetTargetManager(ITargetManager inputTargetManager)
         {
             targetManager = inputTargetManager;

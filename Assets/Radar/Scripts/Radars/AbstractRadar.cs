@@ -12,15 +12,18 @@ namespace RadarComponents
         protected ITargetManager targetManager = null;
         protected ContainerTargetsView containerViews;
 
+        private ContainerTargetManager containerTargets;
+
         protected virtual void Awake()
         {
             CheckLocator();
             containerViews = GetComponent<ContainerTargetsView>();
+            containerTargets = FindObjectOfType<ContainerTargetManager>();
         }
 
         protected virtual void Start()
         {
-            targetManager = ContainerTargetManager.targetManager;
+            targetManager = containerTargets.TargetManager;
             containerViews.SetTargetManager(targetManager);
         }
 
