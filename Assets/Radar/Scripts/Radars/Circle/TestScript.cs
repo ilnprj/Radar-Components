@@ -3,14 +3,21 @@ using UnityEngine;
 public class TestScript : MonoBehaviour
 {
     public Transform target;
-    public Transform player;
+    public Transform playerTransform;
 
-    public Transform transformExample;
+    private GameObject lookAtObject;
 
-   
+    
+    private void Awake()
+    {
+        lookAtObject = new GameObject();
+        lookAtObject.transform.SetParent(playerTransform);
+        lookAtObject.transform.localPosition = Vector3.zero;
+        lookAtObject.transform.localRotation = Quaternion.identity;
+    }
+
     private void Update()
     {
-                transformExample.LookAt(target);
-                transform.localRotation = Quaternion.Euler(0, 0, -transformExample.eulerAngles.y);
+        //transform.localRotation = Quaternion.Euler(0, 0, -rot.transform.eulerAngles.y);
     }
 }

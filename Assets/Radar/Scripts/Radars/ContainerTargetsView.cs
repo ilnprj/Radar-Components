@@ -62,7 +62,7 @@ namespace RadarComponents
 
         private void onRemoveTarget(ITarget target)
         {
-            BaseTargetView item = Targets.Find(x => x.Target.IdTarget == target.IdTarget);
+            BaseTargetView item = Targets.Find(x => x.Target.GetHashCode() == target.GetHashCode());
             pool.SetToPool(item);
         }
     }
