@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 
 namespace RadarComponents
@@ -25,7 +25,7 @@ namespace RadarComponents
             }
         }
 
-        public static event Action onUpdateLocator = delegate { };
+        public static Action onUpdateLocator = delegate { };
 
         public static event Action onInit = delegate { };
 
