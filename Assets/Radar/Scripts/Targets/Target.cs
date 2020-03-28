@@ -3,10 +3,14 @@
 namespace RadarComponents
 {
     /// <summary>
-    /// Класс цели, регистрирует
+    /// Класс цели, регистрирует при появлении на сцене цель в Менеджере и убирает ее оттуда при деактивации
+    /// Цель может опционально обновлять локатор игрока сама, если обладает возможностью передвижения
     /// </summary>
     public class Target : MonoBehaviour, ITarget
     {
+        [SerializeField]
+        private bool isTargetCanMove;
+
         [SerializeField]
         private Sprite targetImage;
 
@@ -20,6 +24,19 @@ namespace RadarComponents
 
         private ContainerTargetManager container;
 
+        private Vector3 _pos;
+        private Vector3 cachedPosition
+        {
+            set
+            {
+                if (value!= _pos)
+                {
+                    _pos = value;
+                    PlayerLocator.onUpdateLocator();
+                }
+            }
+        }
+
         private void OnEnable()
         {
             container = FindObjectOfType<ContainerTargetManager>();
@@ -28,6 +45,14 @@ namespace RadarComponents
             else
             {
                 container.onInit += OnTargetEnable;
+            }
+        }
+
+        private void FixedUpdate()
+        {
+            if (isTargetCanMove)
+            {
+                cachedPosition = transform.position;
             }
         }
 
