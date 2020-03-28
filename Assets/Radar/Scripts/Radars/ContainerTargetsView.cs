@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace RadarComponents
 {
+    /// <summary>
+    /// Контейнер который принимает задачи от менеджера и отправляет их в менеджер спауна/пула
+    /// </summary>
     public class ContainerTargetsView : MonoBehaviour
     {
         [Header("Current Targets View")]
@@ -18,8 +21,9 @@ namespace RadarComponents
         private RectTransform inputRect;
 
         private ITargetManager targetManager;
+        private PlayerLocator locator;
+        private PoolBaseTargetView pool;
 
-        public PlayerLocator locator;
 
         /// <summary>
         /// Инициализация контейнера с View. Здесь получаем все цели из TargetManager'a и создаем их отображение на компасе
@@ -27,6 +31,8 @@ namespace RadarComponents
         /// <param name="inputTargetManager"></param>
         public void SetTargetManager(ITargetManager inputTargetManager)
         {
+            locator = FindObjectOfType<PlayerLocator>();
+            pool = new PoolBaseTargetView();
             targetManager = inputTargetManager;
             targetManager.onAddTarget += onAddTarget;
             targetManager.onRemoveTarget += onRemoveTarget;
@@ -48,8 +54,7 @@ namespace RadarComponents
 
         private void onAddTarget(ITarget target)
         {
-            //TODO: Если в пуле элементов свободных нет то заспаунить
-            BaseTargetView item = Instantiate(prefabView, spawnRoot);
+            BaseTargetView item = pool.GetNewView(prefabView, spawnRoot);
             item.transform.SetParent(spawnRoot);
             item.InitTargetView(target, locator.transform, inputRect);
             Targets.Add(item);
@@ -58,8 +63,7 @@ namespace RadarComponents
         private void onRemoveTarget(ITarget target)
         {
             BaseTargetView item = Targets.Find(x => x.Target.IdTarget == target.IdTarget);
-            item.gameObject.SetActive(false);
-           //TODO: Выкинуть в pool
+            pool.SetToPool(item);
         }
     }
 }

@@ -1,26 +1,20 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace RadarComponents
 {
+    /// <summary>
+    /// Реализация TargetManager в простом виде
+    /// </summary>
     public class TargetManager : MonoBehaviour, ITargetManager
-    {
-        private List<ITarget> targets = new List<ITarget>();
+    {        
+        public List<ITarget> Targets { get; private set; } = new List<ITarget>();
+        public event Action<ITarget> onAddTarget = delegate { };
+        public event Action<ITarget> onRemoveTarget = delegate { };
 
         [SerializeField]
         private int countTargets = 0;
-
-        public List<ITarget> Targets {
-            get => targets;
-            private set {
-                targets = value;
-            }
-        }
-
-        public event Action<ITarget> onAddTarget = delegate { };
-        public event Action<ITarget> onRemoveTarget = delegate { };
 
         /// <summary>
         /// Добавить цель
@@ -28,7 +22,7 @@ namespace RadarComponents
         /// <param name="target"></param>
         public void AddTarget(ITarget target)
         {
-            targets.Add(target);
+            Targets.Add(target);
             onAddTarget(target);
             //TODO: Удалить после того как фича будет отлажена
             countTargets++;
@@ -40,7 +34,7 @@ namespace RadarComponents
         /// <param name="target"></param>
         public void RemoveTarget(ITarget target)
         {
-            targets.Remove(target);
+            Targets.Remove(target);
             onRemoveTarget(target);
             countTargets--;
         }

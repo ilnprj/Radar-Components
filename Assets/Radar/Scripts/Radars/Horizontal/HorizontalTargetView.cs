@@ -23,6 +23,9 @@ namespace RadarComponents
             UpdateViewTarget();
         }
 
+        /// <summary>
+        /// Метод отрабатывающий в случае если цель или игрок - изменили свое положение
+        /// </summary>
         public override void UpdateViewTarget()
         {
             float posX = Camera.main.WorldToScreenPoint(targetTransform.position).x;

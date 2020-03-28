@@ -33,8 +33,7 @@ namespace RadarComponents
 
         private void OnDisable()
         {
-            container.onInit -= OnTargetEnable;
-            container.TargetManager.RemoveTarget(this);
+            OnTargetDisable();
         }
 
         /// <summary>
@@ -50,7 +49,8 @@ namespace RadarComponents
         /// </summary>
         public void OnTargetDisable()
         {
-          
+            container.onInit -= OnTargetEnable;
+            container.TargetManager.RemoveTarget(this);
         }
     }
 }
