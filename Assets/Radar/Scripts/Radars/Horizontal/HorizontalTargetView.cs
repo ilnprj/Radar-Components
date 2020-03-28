@@ -20,6 +20,7 @@ namespace RadarComponents
             iconTarget.rectTransform.anchoredPosition = new Vector2(0, 0);
             maxSize = iconTarget.rectTransform.sizeDelta.x;
             minSize = maxSize / 2;
+            iconTarget.preserveAspect = true;
             UpdateViewTarget();
         }
 
@@ -50,8 +51,6 @@ namespace RadarComponents
             float dis = Vector3.Distance(playerTransform.position, targetTransform.position);
             float size = maxSize - dis / 4;
             size = Mathf.Clamp(size, minSize, maxSize);
-            //FIXME: Идет обнуление по дефолту
-            //iconTarget.rectTransform.sizeDelta = new Vector2(size, iconTarget.rectTransform.sizeDelta.y);
         }
     }
 }

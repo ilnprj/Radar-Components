@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8138185305813879348}
   - component: {fileID: 2512029595947725351}
   m_Layer: 5
-  m_Name: Prefab
+  m_Name: HorizontalPrefabView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,6 +88,6 @@ MonoBehaviour:
   iconTarget: {fileID: 8138185305813879348}
   targetTransform: {fileID: 0}
   playerTransform: {fileID: 0}
-  radarBackground: {fileID: 0}
-  arrowIn: {r: 0, g: 1, b: 0.023826122, a: 1}
+  rootTransform: {fileID: 0}
+  arrowIn: {r: 1, g: 1, b: 1, a: 1}
   arrowOut: {r: 0, g: 0, b: 0, a: 0}
