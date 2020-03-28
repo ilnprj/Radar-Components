@@ -18,16 +18,7 @@ namespace RadarComponents
         [SerializeField]
         protected RectTransform rootTransform;
 
-        private ITarget target;
-
-        public ITarget Target
-        {
-            get => target;
-            private set
-            {
-                target = value;
-            }
-        }
+        public ITarget Target { get; private set; }
 
         /// <summary>
         /// Инициализация View
