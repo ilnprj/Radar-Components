@@ -12,15 +12,8 @@ namespace RadarComponents
         [SerializeField]
         private Color arrowOut = Color.clear;
 
-        private PlayerLocator locator;
-
         private float minSize;
         private float maxSize;
-
-        private void Awake()
-        {
-            locator = FindObjectOfType<PlayerLocator>();
-        }
 
         private void Start()
         {

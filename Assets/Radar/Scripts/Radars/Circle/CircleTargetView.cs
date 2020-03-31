@@ -8,15 +8,13 @@ namespace RadarComponents
     public class CircleTargetView : BaseTargetView
     {
         private GameObject lookingObject;
-        private PlayerLocator locator;
         private Transform looking;
         private Transform target;
 
-        private void Awake()
+        protected override void Awake()
         {
-            locator = FindObjectOfType<PlayerLocator>();
+            base.Awake();
             lookingObject = new GameObject();
-            lookingObject.name = Target.IdTarget;
             lookingObject.transform.SetParent(locator.transform);
             looking = lookingObject.transform;
             looking.localPosition = Vector3.zero;
@@ -25,6 +23,7 @@ namespace RadarComponents
 
         private void Start()
         {
+            lookingObject.name = Target.IdTarget;
             UpdateViewTarget();
         }
 
