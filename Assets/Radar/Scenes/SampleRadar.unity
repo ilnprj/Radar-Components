@@ -489,6 +489,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ExampleTarget (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 7734668430113676039, guid: a10384802f3943b4481d63bf4ce26617,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a10384802f3943b4481d63bf4ce26617, type: 3}
 --- !u!1 &236690715
@@ -501,6 +506,7 @@ GameObject:
   m_Component:
   - component: {fileID: 236690716}
   - component: {fileID: 236690718}
+  - component: {fileID: 236690719}
   - component: {fileID: 236690717}
   m_Layer: 5
   m_Name: MiniMapRadar
@@ -527,9 +533,36 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 98.8, y: 97}
-  m_SizeDelta: {x: 139.6, y: 149.9}
+  m_SizeDelta: {x: 140, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &236690717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 236690715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cee1e89d3d168e4fb4eabbb8418c1d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1457412724}
+  player: {fileID: 534669905}
+  background: {fileID: 236690719}
+  targetViewPrefab: {fileID: 7754129429807562627, guid: 00571ee9b86db374aa507fa3c99ceec2,
+    type: 3}
+  insideRadarDistance: 20
+  blipSizePercentage: 5
+--- !u!222 &236690718
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 236690715}
+  m_CullTransparentMesh: 0
+--- !u!114 &236690719
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -542,7 +575,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.10228671, b: 0.49056602, a: 0.5647059}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -556,14 +589,6 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
---- !u!222 &236690718
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 236690715}
-  m_CullTransparentMesh: 0
 --- !u!1 &397169993
 GameObject:
   m_ObjectHideFlags: 0
@@ -653,7 +678,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &415434574
 RectTransform:
   m_ObjectHideFlags: 0
@@ -793,6 +818,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ExampleTarget (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 7734668430113676039, guid: a10384802f3943b4481d63bf4ce26617,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a10384802f3943b4481d63bf4ce26617, type: 3}
 --- !u!1 &534669902
@@ -810,7 +840,7 @@ GameObject:
   - component: {fileID: 534669907}
   m_Layer: 0
   m_Name: Player
-  m_TagString: MainCamera
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -878,7 +908,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -13.09}
+  m_LocalPosition: {x: 0, y: 1, z: -45.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -891,7 +921,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f717d32f27063b84cbdd9a3391cdcb48, type: 3}
   m_Name: 
@@ -1241,6 +1271,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ExampleTarget (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 7734668430113676039, guid: a10384802f3943b4481d63bf4ce26617,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a10384802f3943b4481d63bf4ce26617, type: 3}
 --- !u!1 &939054773
@@ -1398,6 +1433,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ExampleTarget (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 7734668430113676039, guid: a10384802f3943b4481d63bf4ce26617,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a10384802f3943b4481d63bf4ce26617, type: 3}
 --- !u!1001 &999418387
@@ -1483,6 +1523,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ExampleTarget
       objectReference: {fileID: 0}
+    - target: {fileID: 7734668430113676039, guid: a10384802f3943b4481d63bf4ce26617,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a10384802f3943b4481d63bf4ce26617, type: 3}
 --- !u!1 &1025068357
@@ -1560,7 +1605,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1101464130
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1617,6 +1662,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1101464129}
   m_CullTransparentMesh: 0
+--- !u!4 &1457412724 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7734668430113676035, guid: a10384802f3943b4481d63bf4ce26617,
+    type: 3}
+  m_PrefabInstance: {fileID: 999418387}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1660286919
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1699,6 +1750,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ExampleTarget (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7734668430113676039, guid: a10384802f3943b4481d63bf4ce26617,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a10384802f3943b4481d63bf4ce26617, type: 3}
