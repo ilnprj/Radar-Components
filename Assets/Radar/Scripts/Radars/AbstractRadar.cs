@@ -3,7 +3,7 @@
 namespace RadarComponents
 {
     /// <summary>
-    /// Абстрактный класс радара. Работает при обновлении локатора игрока
+    /// Abstract radar class. Works when updating a player’s locator
     /// </summary>
     [RequireComponent(typeof(ContainerTargetsView))]
     public abstract class AbstractRadar : MonoBehaviour

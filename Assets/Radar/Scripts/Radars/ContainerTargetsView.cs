@@ -4,21 +4,20 @@ using System.Collections.Generic;
 namespace RadarComponents
 {
     /// <summary>
-    /// Контейнер который принимает задачи от менеджера и отправляет их в менеджер спауна/пула
+    /// A container that accepts tasks from the manager and sends them to the spawn / pool manager
     /// </summary>
     public class ContainerTargetsView : MonoBehaviour
     {
         [Header("Current Targets View")]
         public List<BaseTargetView> Targets = new List<BaseTargetView>();
+
         [Header("Prefab View Item")]
         [SerializeField]
         private BaseTargetView prefabView;
+
         [Header("Spawn root")]
         [SerializeField]
         private Transform spawnRoot;
-        [Header("Rect root")]
-        [SerializeField]
-        private RectTransform inputRect;
 
         private ITargetManager targetManager;
         private PlayerLocator locator;
@@ -26,7 +25,7 @@ namespace RadarComponents
 
 
         /// <summary>
-        /// Инициализация контейнера с View. Здесь получаем все цели из TargetManager'a и создаем их отображение на компасе
+        /// Initializing a container with View.Here we get all the targets from TargetManager and create their display on the compass
         /// </summary>
         /// <param name="inputTargetManager"></param>
         public void SetTargetManager(ITargetManager inputTargetManager)
@@ -55,8 +54,9 @@ namespace RadarComponents
         private void onAddTarget(ITarget target)
         {
             BaseTargetView item = pool.GetNewView(prefabView, spawnRoot);
+            RectTransform rect = spawnRoot.GetComponent<RectTransform>();
             item.transform.SetParent(spawnRoot);
-            item.InitTargetView(target, locator.transform, inputRect);
+            item.InitTargetView(target, locator.transform, rect);
             Targets.Add(item);
         }
 

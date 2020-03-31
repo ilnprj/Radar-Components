@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace RadarComponents
 {
+    /// <summary>
+    /// A pool for target views that can be constantly turned on and off
+    /// </summary>
     public class PoolBaseTargetView:MonoBehaviour
     {
         private List<BaseTargetView> poolTargetViews;

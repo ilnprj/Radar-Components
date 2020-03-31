@@ -12,8 +12,15 @@ namespace RadarComponents
         [SerializeField]
         private Color arrowOut = Color.clear;
 
+        private PlayerLocator locator;
+
         private float minSize;
         private float maxSize;
+
+        private void Awake()
+        {
+            locator = FindObjectOfType<PlayerLocator>();
+        }
 
         private void Start()
         {
@@ -29,10 +36,10 @@ namespace RadarComponents
         /// </summary>
         public override void UpdateViewTarget()
         {
-            float posX = Camera.main.WorldToScreenPoint(targetTransform.position).x;
+            float posX = locator.CameraPlayer.WorldToScreenPoint(targetTransform.position).x;
             float center = Screen.width / 2;
 
-            Vector3 forward = Camera.main.transform.TransformDirection(Vector3.forward);
+            Vector3 forward = locator.CameraPlayer.transform.TransformDirection(Vector3.forward);
             Vector3 toOther = targetTransform.position - Camera.main.transform.position;
             if (Vector3.Dot(forward, toOther) < 0) posX = 0; 
 

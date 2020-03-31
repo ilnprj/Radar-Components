@@ -3,7 +3,7 @@
 namespace RadarComponents
 {
     /// <summary>
-    /// Круговой радар
+    /// Simple circle radar without items
     /// </summary>
     public class CircleRadar : AbstractRadar
     {

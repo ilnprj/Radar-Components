@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace RadarComponents
 {
+    /// <summary>
+    /// Simple scroller with compass
+    /// </summary>
     [RequireComponent(typeof(RawImage))]
     public class HorizontalCompass : AbstractRadar
     {
