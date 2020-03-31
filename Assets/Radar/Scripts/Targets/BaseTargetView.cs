@@ -13,6 +13,7 @@ namespace RadarComponents
         protected Transform targetTransform;
         protected Transform playerTransform;
         protected RectTransform rootTransform;
+        protected PlayerLocator locator;
 
         public ITarget Target { get; private set; }
 
@@ -31,6 +32,11 @@ namespace RadarComponents
         protected virtual void OnEnable()
         {
             PlayerLocator.onUpdateLocator += UpdateViewTarget;
+        }
+
+        protected virtual void Awake()
+        {
+            locator = FindObjectOfType<PlayerLocator>();
         }
 
         protected virtual void OnDisable()

@@ -18,8 +18,9 @@ namespace RadarComponents
 
         private MiniMapRadar radarContainer;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             rectPositionView = GetComponent<RectTransform>();
             radarContainer = FindObjectOfType<MiniMapRadar>();
         }
