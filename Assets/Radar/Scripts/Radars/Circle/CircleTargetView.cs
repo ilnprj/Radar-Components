@@ -3,7 +3,7 @@
 namespace RadarComponents
 {
     /// <summary>
-    /// View для префаба цели на компасе 
+    /// View for circle compass
     /// </summary>
     public class CircleTargetView : BaseTargetView
     {
@@ -16,6 +16,7 @@ namespace RadarComponents
         {
             locator = FindObjectOfType<PlayerLocator>();
             lookingObject = new GameObject();
+            lookingObject.name = Target.IdTarget;
             lookingObject.transform.SetParent(locator.transform);
             looking = lookingObject.transform;
             looking.localPosition = Vector3.zero;

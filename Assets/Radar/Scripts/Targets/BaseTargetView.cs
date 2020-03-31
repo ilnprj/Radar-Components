@@ -4,27 +4,21 @@ using UnityEngine.UI;
 namespace RadarComponents
 {
     /// <summary>
-    /// Базовый класс цели
+    /// Base functional for Target View
     /// </summary>
     public abstract class BaseTargetView : MonoBehaviour
     {
         [SerializeField]
         protected Image iconTarget;
-        [SerializeField]
         protected Transform targetTransform;
-        [SerializeField]
         protected Transform playerTransform;
-
-        [SerializeField]
         protected RectTransform rootTransform;
 
         public ITarget Target { get; private set; }
 
         /// <summary>
-        /// Инициализация View
+        /// Init View
         /// </summary>
-        /// <param name="target"></param>
-        /// <param name="inputPlayer"></param>
         public void InitTargetView(ITarget target, Transform inputPlayer, RectTransform inputRootTransform)
         {
             rootTransform = inputRootTransform;
@@ -45,7 +39,7 @@ namespace RadarComponents
         }
 
         /// <summary>
-        /// Что абстрактный класс будет выполнять при обновлении данных о цели или местоположении игрока
+        /// What should an abstract class do when updating data about a player’s goal or location
         /// </summary>
         public abstract void UpdateViewTarget();
     }

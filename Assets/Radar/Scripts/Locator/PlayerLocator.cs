@@ -4,10 +4,21 @@ using UnityEngine;
 namespace RadarComponents
 {
     /// <summary>
-    /// Класс который будет докладывать когда можно обновлять любые средства радара. 
+    /// A class that will report when it is possible to update any means of the radar.
     /// </summary>
     public class PlayerLocator : MonoBehaviour
     {
+        [SerializeField]
+        private Camera cameraPlayer;
+
+        public Camera CameraPlayer
+        {
+            get
+            {
+                return cameraPlayer;
+            }
+        }
+
         public static bool IsInited
         {
             get
@@ -70,7 +81,7 @@ namespace RadarComponents
         }
 
         /// <summary>
-        /// Обновить локатор принудительно извне (В случа если объект (target) двигается сам.
+        /// Update the locator forcibly from the outside(In case the object (target) moves by itself.
         /// </summary>
         public void UpdateLocator()
         {
