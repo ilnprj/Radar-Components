@@ -23,7 +23,7 @@ namespace RadarComponents
 
         private void Start()
         {
-            lookingObject.name = Target.IdTarget;
+            lookingObject.name = CurrentTarget.IdTarget;
             UpdateViewTarget();
         }
 

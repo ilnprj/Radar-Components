@@ -45,6 +45,14 @@ namespace RadarComponents
             }
         }
 
+        private void OnValidate()
+        {
+            if (prefabView == null || spawnRoot == null)
+            {
+                Debug.LogError("Please set prefab and root transform in inspector. GameObject -"+gameObject.name);
+            }
+        }
+
         private void OnDisable()
         {
             targetManager.onAddTarget -= onAddTarget;
@@ -62,7 +70,7 @@ namespace RadarComponents
 
         private void onRemoveTarget(ITarget target)
         {
-            BaseTargetView item = Targets.Find(x => x.Target.GetHashCode() == target.GetHashCode());
+            BaseTargetView item = Targets.Find(x => x.CurrentTarget.GetHashCode() == target.GetHashCode());
             pool.SetToPool(item);
         }
     }

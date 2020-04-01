@@ -15,7 +15,7 @@ namespace RadarComponents
         protected RectTransform rootTransform;
         protected PlayerLocator locator;
 
-        public ITarget Target { get; private set; }
+        public ITarget CurrentTarget { get; private set; }
 
         /// <summary>
         /// Init View
@@ -26,7 +26,7 @@ namespace RadarComponents
             iconTarget.sprite = target.SpriteTarget;
             targetTransform = target.TransformTarget;
             playerTransform = inputPlayer;
-            Target = target;
+            CurrentTarget = target;
         }
 
         protected virtual void OnEnable()
