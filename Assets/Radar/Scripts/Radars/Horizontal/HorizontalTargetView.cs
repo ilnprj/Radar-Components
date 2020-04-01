@@ -54,13 +54,5 @@ namespace RadarComponents
 
             UpdateExtensions();
         }
-
-        private void UpdateExtensions()
-        {
-            foreach (var item in extensionsForView)
-            {
-                item.UpdateExtensionView(playerTransform,CurrentTarget);
-            }
-        }
     }
 }

@@ -52,5 +52,13 @@ namespace RadarComponents
         /// What should an abstract class do when updating data about a player’s goal or location
         /// </summary>
         public abstract void UpdateViewTarget();
+
+        protected void UpdateExtensions()
+        {
+            foreach (var item in extensionsForView)
+            {
+                item.UpdateExtensionView(playerTransform, CurrentTarget);
+            }
+        }
     }
 }

@@ -33,6 +33,7 @@ namespace RadarComponents
             {
                 looking.LookAt(targetTransform);
                 transform.localRotation = Quaternion.Euler(0, 0, -looking.transform.eulerAngles.y);
+                UpdateExtensions();
             }
         }
     }
