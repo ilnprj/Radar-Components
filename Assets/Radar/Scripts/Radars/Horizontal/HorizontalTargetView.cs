@@ -51,6 +51,8 @@ namespace RadarComponents
             float dis = Vector3.Distance(playerTransform.position, targetTransform.position);
             float size = maxSize - dis / 4;
             size = Mathf.Clamp(size, minSize, maxSize);
+
+            UpdateExtensions();
         }
     }
 }

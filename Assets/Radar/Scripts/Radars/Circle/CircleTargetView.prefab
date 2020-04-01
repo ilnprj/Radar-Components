@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 1935469360848258952}
   - component: {fileID: 1935469360848258998}
   - component: {fileID: 1935469360848258999}
+  - component: {fileID: 1294406435125389794}
   m_Layer: 5
-  m_Name: Image
+  m_Name: TargetPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,6 +73,25 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &1294406435125389794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935469360848258953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86b7f0d3abddb6547b322d1593d03342, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  durationAnim: 0.5
+  startColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  resultColor:
+    serializedVersion: 2
+    rgba: 16777215
 --- !u!1 &1935469360973348410
 GameObject:
   m_ObjectHideFlags: 0
@@ -84,6 +104,7 @@ GameObject:
   - component: {fileID: 1935469360973348390}
   - component: {fileID: 1935469360973348391}
   - component: {fileID: 5711244663752606824}
+  - component: {fileID: 3298748718693381108}
   m_Layer: 5
   m_Name: CircleTargetView
   m_TagString: Untagged
@@ -159,6 +180,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iconTarget: {fileID: 1935469360848258999}
-  targetTransform: {fileID: 0}
-  playerTransform: {fileID: 0}
-  rootTransform: {fileID: 0}
+  extensionsForView:
+  - {fileID: 3298748718693381108}
+--- !u!114 &3298748718693381108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935469360973348410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a827caab1b60a344a920fef9f06a11af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemsOnPulse:
+  - {fileID: 1294406435125389794}
+  closePulse: 0.25
+  farPulse: 1
+  maxDistance: 100
+  minDistance: 1.5

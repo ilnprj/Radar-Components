@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 namespace RadarComponents
 {
@@ -10,12 +11,15 @@ namespace RadarComponents
     {
         [SerializeField]
         protected Image iconTarget;
+        [SerializeField]
+        protected List<AbstractExtensionTarget> extensionsForView = new List<AbstractExtensionTarget>();
+
         protected Transform targetTransform;
         protected Transform playerTransform;
         protected RectTransform rootTransform;
         protected PlayerLocator locator;
 
-        public ITarget Target { get; private set; }
+        public ITarget CurrentTarget { get; private set; }
 
         /// <summary>
         /// Init View
@@ -26,7 +30,7 @@ namespace RadarComponents
             iconTarget.sprite = target.SpriteTarget;
             targetTransform = target.TransformTarget;
             playerTransform = inputPlayer;
-            Target = target;
+            CurrentTarget = target;
         }
 
         protected virtual void OnEnable()
@@ -48,5 +52,13 @@ namespace RadarComponents
         /// What should an abstract class do when updating data about a player’s goal or location
         /// </summary>
         public abstract void UpdateViewTarget();
+
+        protected void UpdateExtensions()
+        {
+            foreach (var item in extensionsForView)
+            {
+                item.UpdateExtensionView(playerTransform, CurrentTarget);
+            }
+        }
     }
 }

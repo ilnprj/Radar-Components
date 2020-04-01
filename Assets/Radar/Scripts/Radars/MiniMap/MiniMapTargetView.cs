@@ -9,7 +9,20 @@ namespace RadarComponents
     public class MiniMapTargetView : BaseTargetView
     {
         private RectTransform rectPositionView;
-        private Image backgroundRadar;
+
+        private Image _background;
+        private Image backgroundRadar
+        {
+            get
+            {
+                if (_background == null)
+                {
+                    _background = rootTransform.GetComponent<Image>();
+                    return _background;
+                }
+                return _background;
+            }
+        }
         
         private float radarWidth;
         private float radarHeight;
@@ -27,7 +40,6 @@ namespace RadarComponents
 
         private void Start()
         {
-            backgroundRadar = rootTransform.GetComponent<Image>();
             radarWidth = backgroundRadar.rectTransform.rect.width;
             radarHeight = backgroundRadar.rectTransform.rect.height;
             targetHeight = radarHeight * radarContainer.TargetViewSize / 100;
@@ -38,11 +50,11 @@ namespace RadarComponents
         public override void UpdateViewTarget()
         {
             Vector3 playerPos = playerTransform.position;
-            Vector3 targetPos = Target.TransformTarget.position;
+            Vector3 targetPos = CurrentTarget.TransformTarget.position;
             Vector3 normalisedTargetPosiiton = NormalisedPosition(playerPos, targetPos);
             Vector2 targetPosition = CalculateBlipPosition(normalisedTargetPosiiton);
-            targetPosition.x = CheckBorder(targetPosition.x, rootTransform.GetComponent<Image>().rectTransform.rect.width);
-            targetPosition.y = CheckBorder(targetPosition.y, rootTransform.GetComponent<Image>().rectTransform.rect.height);
+            targetPosition.x = CheckBorder(targetPosition.x, backgroundRadar.rectTransform.rect.width);
+            targetPosition.y = CheckBorder(targetPosition.y, backgroundRadar.rectTransform.rect.height);
             UpdateResultPosition(targetPosition);
         }
 
