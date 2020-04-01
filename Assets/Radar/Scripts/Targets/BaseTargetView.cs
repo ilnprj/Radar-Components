@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 namespace RadarComponents
 {
@@ -10,6 +11,9 @@ namespace RadarComponents
     {
         [SerializeField]
         protected Image iconTarget;
+        [SerializeField]
+        protected List<AbstractExtensionTarget> extensionsForView = new List<AbstractExtensionTarget>();
+
         protected Transform targetTransform;
         protected Transform playerTransform;
         protected RectTransform rootTransform;
