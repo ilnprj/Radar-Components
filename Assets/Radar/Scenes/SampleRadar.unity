@@ -262,7 +262,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: be3b52f5a795d7344951db3c887b8199, type: 2}
+  - {fileID: 2100000, guid: 34210913ba0e6414ca64f7cfbf4e2acb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -299,7 +299,7 @@ Transform:
   m_GameObject: {fileID: 133289889}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.6, z: -8.52}
-  m_LocalScale: {x: 2, y: 1, z: 2}
+  m_LocalScale: {x: 20, y: 1, z: 20}
   m_Children: []
   m_Father: {fileID: 207927815}
   m_RootOrder: 0
@@ -496,7 +496,7 @@ PrefabInstance:
     - target: {fileID: 7734668430113676039, guid: a10384802f3943b4481d63bf4ce26617,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a10384802f3943b4481d63bf4ce26617, type: 3}
@@ -842,7 +842,7 @@ PrefabInstance:
     - target: {fileID: 7734668430113676039, guid: a10384802f3943b4481d63bf4ce26617,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a10384802f3943b4481d63bf4ce26617, type: 3}
@@ -1311,7 +1311,7 @@ PrefabInstance:
     - target: {fileID: 7734668430113676039, guid: a10384802f3943b4481d63bf4ce26617,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a10384802f3943b4481d63bf4ce26617, type: 3}
@@ -1478,7 +1478,7 @@ PrefabInstance:
     - target: {fileID: 7734668430113676039, guid: a10384802f3943b4481d63bf4ce26617,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a10384802f3943b4481d63bf4ce26617, type: 3}
@@ -1897,7 +1897,7 @@ PrefabInstance:
     - target: {fileID: 7734668430113676039, guid: a10384802f3943b4481d63bf4ce26617,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a10384802f3943b4481d63bf4ce26617, type: 3}
