@@ -2,6 +2,9 @@
 
 namespace RadarComponents
 {
+    /// <summary>
+    /// Play one sound. This component must be thrown into the PulseDistance script.
+    /// </summary>
     [RequireComponent(typeof(AudioSource))]
     public class PlayOneSound : AbstractExtensionTarget
     {

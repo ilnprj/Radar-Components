@@ -5,12 +5,15 @@ using UnityEngine.Events;
 
 namespace RadarComponents
 {
+    /// <summary>
+    /// A script that sends signals at intervals that depend on the distance to the target
+    /// </summary>
     public class PulseDistance : AbstractExtensionTarget
     {
         [SerializeField]
         private List<AbstractExtensionTarget> itemsOnPulse = new List<AbstractExtensionTarget>();
 
-        private UnityEvent onPulseUnityEvent;
+        private UnityEvent onPulseUnityEvent = default;
 
         [SerializeField]
         private float closePulse = 0.25f;

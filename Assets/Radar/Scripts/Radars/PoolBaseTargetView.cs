@@ -6,17 +6,9 @@ namespace RadarComponents
     /// <summary>
     /// A pool for target views that can be constantly turned on and off
     /// </summary>
-    public class PoolBaseTargetView:MonoBehaviour
+    public class PoolBaseTargetView: MonoBehaviour
     {
-        private List<BaseTargetView> poolTargetViews;
-
-        /// <summary>
-        /// Init list
-        /// </summary>
-        public PoolBaseTargetView()
-        {
-            poolTargetViews = new List<BaseTargetView>();
-        }
+        private List<BaseTargetView> poolTargetViews =  new List<BaseTargetView>();
 
         public BaseTargetView GetNewView(BaseTargetView prefabView, Transform spawnRoot)
         {

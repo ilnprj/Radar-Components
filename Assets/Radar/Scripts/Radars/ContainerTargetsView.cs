@@ -13,11 +13,11 @@ namespace RadarComponents
 
         [Header("Prefab View Item")]
         [SerializeField]
-        private BaseTargetView prefabView;
+        private BaseTargetView prefabView = default;
 
         [Header("Spawn root")]
         [SerializeField]
-        private Transform spawnRoot;
+        private Transform spawnRoot = default;
 
         private ITargetManager targetManager;
         private PlayerLocator locator;
@@ -31,7 +31,7 @@ namespace RadarComponents
         public void SetTargetManager(ITargetManager inputTargetManager)
         {
             locator = FindObjectOfType<PlayerLocator>();
-            pool = new PoolBaseTargetView();
+            pool = gameObject.AddComponent<PoolBaseTargetView>();
             targetManager = inputTargetManager;
             targetManager.onAddTarget += onAddTarget;
             targetManager.onRemoveTarget += onRemoveTarget;

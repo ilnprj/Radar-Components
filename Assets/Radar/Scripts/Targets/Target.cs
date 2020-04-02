@@ -9,13 +9,13 @@ namespace RadarComponents
     public class Target : MonoBehaviour, ITarget
     {
         [SerializeField]
-        private bool isTargetCanMove;
+        private bool isTargetCanMove = default;
 
         [SerializeField]
-        private Sprite targetImage;
+        private Sprite targetImage = default;
 
         [SerializeField]
-        private string idTarget;
+        private string idTarget = default;
         public Sprite SpriteTarget { get => targetImage; }
 
         public Transform TransformTarget => transform;

@@ -9,7 +9,7 @@ namespace RadarComponents
     public class PlayerLocator : MonoBehaviour
     {
         [SerializeField]
-        private Camera cameraPlayer;
+        private Camera cameraPlayer = default;
 
         public Camera CameraPlayer
         {
