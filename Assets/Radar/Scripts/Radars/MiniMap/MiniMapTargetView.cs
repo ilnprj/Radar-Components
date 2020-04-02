@@ -80,7 +80,7 @@ namespace RadarComponents
         /// </summary>
         private float CheckBorder(float position, float border)
         {
-            if (position + targetWidth > border)
+            if (position + targetWidth >= border)
             {
                 position = border - targetWidth;
             }

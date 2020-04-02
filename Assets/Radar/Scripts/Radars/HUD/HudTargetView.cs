@@ -12,6 +12,9 @@ namespace RadarComponents {
         private float centerX;
         private float centerY;
         private Vector2 posTarget;
+        private Vector3 forward;
+        private Vector3 toOther;
+
         private const int DIVIDE_CONSTANT = 2;
 
         public override void UpdateViewTarget()
@@ -20,12 +23,13 @@ namespace RadarComponents {
             centerX = Screen.width / DIVIDE_CONSTANT;
             centerY = Screen.height / DIVIDE_CONSTANT;
 
-            Vector3 forward = locator.CameraPlayer.transform.TransformDirection(Vector3.forward);
-            Vector3 toOther = targetTransform.position - Camera.main.transform.position;
+            forward  = locator.CameraPlayer.transform.TransformDirection(Vector3.forward);
+            toOther = targetTransform.position - Camera.main.transform.position;
 
             if (Vector3.Dot(forward, toOther) < 0)
             {
-                posTarget = Vector2.zero;
+                float yPos = showInBorderScreen ? 0 : -100;
+                posTarget = new Vector2(posTarget.x, yPos);
             }
 
             if (showInBorderScreen)
@@ -38,7 +42,7 @@ namespace RadarComponents {
         }
 
         private void CalibrateInsindeScreen()
-        {
+        { 
             float minPos = centerX - rootTransform.sizeDelta.x / DIVIDE_CONSTANT;
             float maxPos = centerX + rootTransform.sizeDelta.x / DIVIDE_CONSTANT;
 
