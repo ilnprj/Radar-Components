@@ -6,9 +6,6 @@ namespace RadarComponents {
     /// </summary>
     public class HudTargetView : BaseTargetView
     {
-        [SerializeField]
-        private bool showInBorderScreen = default;
-
         private float centerX;
         private float centerY;
         private Vector2 posTarget;
@@ -16,6 +13,13 @@ namespace RadarComponents {
         private Vector3 toOther;
 
         private const int DIVIDE_CONSTANT = 2;
+        private HudRadar radarContainer;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            radarContainer = GetComponentInParent<HudRadar>();    
+        }
 
         public override void UpdateViewTarget()
         {
@@ -28,11 +32,11 @@ namespace RadarComponents {
 
             if (Vector3.Dot(forward, toOther) < 0)
             {
-                float yPos = showInBorderScreen ? 0 : -100;
+                float yPos = radarContainer.TargetsFadeOut ? -100 : 0;
                 posTarget = new Vector2(posTarget.x, yPos);
             }
 
-            if (showInBorderScreen)
+            if (!radarContainer.TargetsFadeOut)
             {
                 CalibrateInsindeScreen();
             }

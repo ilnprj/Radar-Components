@@ -1,50 +1,34 @@
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 namespace RadarComponents
 {
-    /// <summary>
-    /// Script that display target on the radar
-    /// </summary>
-    public class MiniMapTargetView : BaseTargetView
+    [RequireComponent(typeof(MeshRenderer))]
+    public class TargetMiniMap3D : BaseTargetView
     {
-        private RectTransform rectPositionView;
-        private Image imageTargetView;
-        private Image _background;
-        private Image backgroundRadar
-        {
-            get
-            {
-                if (_background == null)
-                {
-                    _background = rootTransform.GetComponent<Image>();
-                    return _background;
-                }
-                return _background;
-            }
-        }
-        
         private float radarWidth;
         private float radarHeight;
-        private float targetHeight;
+
+        /// <summary>
+        /// Given that the target has the same sides
+        /// </summary>
         private float targetWidth;
 
-        private MiniMapRadar radarContainer;
+        private MiniMap3D radarContainer;
+        private MeshRenderer modelTargetView;
 
         protected override void Awake()
         {
             base.Awake();
-            rectPositionView = GetComponent<RectTransform>();
-            imageTargetView = GetComponent<Image>();
-            radarContainer = GetComponentInParent<MiniMapRadar>();
+            radarContainer = GetComponentInParent<MiniMap3D>();
+            modelTargetView = GetComponent<MeshRenderer>();
         }
 
         private void Start()
         {
-            radarWidth = backgroundRadar.rectTransform.rect.width;
-            radarHeight = backgroundRadar.rectTransform.rect.height;
-            targetHeight = radarHeight * radarContainer.TargetViewSize / 100;
-            targetWidth = radarWidth * radarContainer.TargetViewSize / 100;
+            radarWidth = radarContainer.transform.localScale.x;
+            radarHeight = radarContainer.transform.localScale.y;
+            transform.SetParent(radarContainer.transform);
+            targetWidth = radarWidth * 5 / 100;
             UpdateViewTarget();
         }
 
@@ -54,14 +38,14 @@ namespace RadarComponents
             Vector3 targetPos = CurrentTarget.TransformTarget.position;
             Vector3 normalisedTargetPosiiton = NormalisedPosition(playerPos, targetPos);
             Vector2 targetPosition = CalculateBlipPosition(normalisedTargetPosiiton);
-            targetPosition.x = CheckBorder(targetPosition.x, backgroundRadar.rectTransform.rect.width);
-            targetPosition.y = CheckBorder(targetPosition.y, backgroundRadar.rectTransform.rect.height);
+            targetPosition.x = CheckBorder(targetPosition.x, 5);
+            targetPosition.y = CheckBorder(targetPosition.y, 5);
 
             if (radarContainer.TargetsFadeOut)
             {
                 Vector3 dif = targetPos - playerPos;
                 float distance = dif.magnitude;
-                imageTargetView.enabled = distance <= radarContainer.RadarViewDistance;
+                modelTargetView.enabled = distance <= radarContainer.InsideRadarDistance;
             }
 
             UpdateResultPosition(targetPosition);
@@ -77,23 +61,22 @@ namespace RadarComponents
                 position = border - targetWidth;
             }
 
-            if (position < 0)
+            if (position < -5)
             {
-                position = 0;
+                position = -5;
             }
             return position;
         }
 
         private void UpdateResultPosition(Vector2 position)
         {
-            rectPositionView.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Left, position.x, targetWidth);
-            rectPositionView.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, position.y, targetHeight);
+            transform.localPosition = new Vector3(position.x, 2, -position.y);
         }
 
         private Vector3 NormalisedPosition(Vector3 playerPos, Vector3 targetPos)
         {
-            float normalisedyTargetX = (targetPos.x - playerPos.x) / radarContainer.RadarViewDistance;
-            float normalisedyTargetZ = (targetPos.z - playerPos.z) / radarContainer.RadarViewDistance;
+            float normalisedyTargetX = (targetPos.x - playerPos.x) / radarContainer.transform.localScale.x;
+            float normalisedyTargetZ = (targetPos.z - playerPos.z) / radarContainer.transform.localScale.x;
             return new Vector3(normalisedyTargetX, 0, normalisedyTargetZ);
         }
 
@@ -116,9 +99,11 @@ namespace RadarComponents
             tarY *= radarHeight / 2;
 
             // Offset
-            tarX += radarWidth / radarContainer.OffsetPosition;
-            tarY += radarHeight / radarContainer.OffsetPosition;
-
+            if (radarContainer.OffsetPosition != 0)
+            {
+                tarX += radarWidth / radarContainer.OffsetPosition;
+                tarY += radarHeight / radarContainer.OffsetPosition;
+            }
             return new Vector2(tarX, tarY);
         }
     }

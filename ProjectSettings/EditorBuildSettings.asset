@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Radar/Scenes/SampleRadar.unity
+    path: Assets/Radar/Scenes/3dMiniMap/3dMiniMap.unity
     guid: 43f558e1c29a6414fbd5a408b267642e
   m_configObjects: {}
