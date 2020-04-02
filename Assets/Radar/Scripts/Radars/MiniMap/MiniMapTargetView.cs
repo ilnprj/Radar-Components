@@ -8,7 +8,15 @@ namespace RadarComponents
     /// </summary>
     public class MiniMapTargetView : BaseTargetView
     {
+        [Header("Show target in border:")]
+        [SerializeField]
+        private bool showInBorder = default;
+
+        [SerializeField]
+        private float insideRadarDistance = 20f;
+
         private RectTransform rectPositionView;
+        private Image imageTargetView;
 
         private Image _background;
         private Image backgroundRadar
@@ -35,6 +43,7 @@ namespace RadarComponents
         {
             base.Awake();
             rectPositionView = GetComponent<RectTransform>();
+            imageTargetView = GetComponent<Image>();
             radarContainer = FindObjectOfType<MiniMapRadar>();
         }
 
@@ -55,6 +64,14 @@ namespace RadarComponents
             Vector2 targetPosition = CalculateBlipPosition(normalisedTargetPosiiton);
             targetPosition.x = CheckBorder(targetPosition.x, backgroundRadar.rectTransform.rect.width);
             targetPosition.y = CheckBorder(targetPosition.y, backgroundRadar.rectTransform.rect.height);
+
+            if (!showInBorder)
+            {
+                Vector3 dif = targetPos - playerPos;
+                float distance = dif.magnitude;
+                imageTargetView.enabled = distance <= insideRadarDistance;
+            }
+
             UpdateResultPosition(targetPosition);
         }
 
@@ -63,7 +80,7 @@ namespace RadarComponents
         /// </summary>
         private float CheckBorder(float position, float border)
         {
-            if (position + targetWidth > border)
+            if (position + targetWidth >= border)
             {
                 position = border - targetWidth;
             }

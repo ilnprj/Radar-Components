@@ -10,14 +10,14 @@ namespace RadarComponents
     public class DistanceViewTarget : AbstractExtensionTarget
     {
         private Text textDistance;
-        
+
         [Header("Image target for alpha check:")]
         [SerializeField]
-        private Image imageTarget;
+        private Image imageTarget = default;
 
         [Header("Changing alpha text:")]
         [SerializeField]
-        private bool changeAlphaText;
+        private bool changeAlphaText = default;
 
         private void Awake()
         {

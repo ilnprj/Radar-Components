@@ -7,7 +7,7 @@
     {
         public override void OnUpdateRadar()
         {
-           
+            //NOTE: That's no need functional. All functions are realized by his items.
         }
     }
 }

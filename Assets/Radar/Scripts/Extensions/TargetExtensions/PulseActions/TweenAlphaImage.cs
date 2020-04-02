@@ -8,13 +8,14 @@ namespace RadarComponents
     public class TweenAlphaImage : AbstractExtensionTarget
     {
         private Image image;
+        [Header("Lenght of animation:")]
         [SerializeField]
         private float durationAnim = 0.5f;
         [SerializeField]
-        private Color32 startColor;
+        private Color32 startColor = default;
         [SerializeField]
-        private Color32 resultColor;
-        private Coroutine coroutine;
+        private Color32 resultColor = default;
+        private Coroutine coroutine = null;
 
         private void Awake()
         {
@@ -32,7 +33,7 @@ namespace RadarComponents
         private IEnumerator LerpImage()
         {
             float ElapsedTime = 0f;
-            float end = Time.unscaledDeltaTime + 0.5f;
+            float end = Time.unscaledDeltaTime + durationAnim;
             while (ElapsedTime < end)
             {
                 ElapsedTime += Time.deltaTime;

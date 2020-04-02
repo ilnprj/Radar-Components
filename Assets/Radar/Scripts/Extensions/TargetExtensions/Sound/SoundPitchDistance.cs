@@ -18,10 +18,7 @@ namespace RadarComponents
         private float farPitch = 0.7f;
         [SerializeField]
         private float closePitch = 1.5f;
-        [SerializeField]
-        private float farPulse = 0.5f;
-        [SerializeField]
-        private float closePulse = 0.5f;
+
         public bool SoundEnabled
         {
             get
