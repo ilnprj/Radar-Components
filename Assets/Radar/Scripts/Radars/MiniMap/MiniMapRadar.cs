@@ -7,9 +7,22 @@ namespace RadarComponents
     /// </summary>
     public class MiniMapRadar : AbstractRadar
     {
+        [Range(1f, 1000f)]
         [Header("Distance inside radar:")]
         [SerializeField]
         private float distanceInsideView = 10f;
+
+        [Range(1f, 20f)]
+        [SerializeField]
+        private float offsetPosition = 2f;
+
+        public float OffsetPosition
+        {
+            get
+            {
+                return offsetPosition;
+            }
+        }
 
         public float RadarViewDistance
         {

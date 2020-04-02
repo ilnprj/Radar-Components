@@ -8,6 +8,17 @@ namespace RadarComponents
     [RequireComponent(typeof(ContainerTargetsView))]
     public abstract class AbstractRadar : MonoBehaviour
     {
+        [SerializeField]
+        private bool targetsFadeOut = default;
+
+        public bool TargetsFadeOut
+        {
+            get
+            {
+                return targetsFadeOut;
+            }
+        }
+
         protected PlayerLocator locator = null;
         protected ITargetManager targetManager = null;
         protected ContainerTargetsView containerViews;

@@ -1183,6 +1183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6620e603ebb179e4e93cdf931ad81a7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetsFadeOut: 1
 --- !u!114 &1257265274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1231,7 +1232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Targets: []
-  prefabView: {fileID: 5788164314378663277, guid: a29dbbe949409b94a9cfaf823be1d2ab,
+  prefabView: {fileID: 5788164314378663277, guid: bdff879b3c7b522418848f8dfbb82407,
     type: 3}
   spawnRoot: {fileID: 1257265272}
 --- !u!1001 &1660286919

@@ -27,7 +27,10 @@ namespace RadarComponents
         public void InitTargetView(ITarget target, Transform inputPlayer, RectTransform inputRootTransform)
         {
             rootTransform = inputRootTransform;
-            iconTarget.sprite = target.SpriteTarget;
+            if (iconTarget != null)
+            {
+                iconTarget.sprite = target.SpriteTarget;
+            }
             targetTransform = target.TransformTarget;
             playerTransform = inputPlayer;
             CurrentTarget = target;

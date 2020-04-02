@@ -504,6 +504,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7912567d302df94cb6a23576b25d00e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetsFadeOut: 1
   distanceInsideView: 10
   targetViewSize: 15
 --- !u!1 &397169993
@@ -1474,7 +1475,7 @@ GameObject:
   - component: {fileID: 1026579182}
   - component: {fileID: 1026579181}
   m_Layer: 5
-  m_Name: MiniMapRadarBorder
+  m_Name: MiniMapRadarFadeOut
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1514,7 +1515,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Targets: []
-  prefabView: {fileID: 114693201753337640, guid: 9f7b063f139b92b469cf153aa708237e,
+  prefabView: {fileID: 114693201753337640, guid: 00571ee9b86db374aa507fa3c99ceec2,
     type: 3}
   spawnRoot: {fileID: 1026579180}
 --- !u!114 &1026579182
@@ -1529,6 +1530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7912567d302df94cb6a23576b25d00e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetsFadeOut: 0
   distanceInsideView: 10
   targetViewSize: 15
 --- !u!114 &1026579183
