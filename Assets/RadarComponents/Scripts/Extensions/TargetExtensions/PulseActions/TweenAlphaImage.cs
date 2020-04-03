@@ -7,7 +7,7 @@ namespace RadarComponents
     [RequireComponent(typeof(Image))]
     public class TweenAlphaImage : AbstractExtensionTarget
     {
-        [Header("Ping Pong")]
+        [Header("Ping Radar Option")]
         [SerializeField]
         private bool pingPong = default;
         [Header("Lenght of animation:")]
@@ -23,6 +23,7 @@ namespace RadarComponents
         private void Awake()
         {
             image = GetComponent<Image>();
+            image.enabled = !pingPong;
         }
 
         public override void UpdateExtensionView(Transform player, ITarget inputTarget)
@@ -30,33 +31,58 @@ namespace RadarComponents
             StartLerp();
         }
 
-        private IEnumerator LerpImage()
-        {
-            float ElapsedTime = 0f;
-            float end = Time.unscaledDeltaTime + durationAnim;
-            image.enabled = true;
-            while (ElapsedTime < end)
-            {
-                ElapsedTime += Time.deltaTime;
-                if (pingPong)
-                image.color = new Color(image.color.r, image.color.g, image.color.b, Mathf.PingPong((ElapsedTime / end), durationAnim));
-                else
-                image.color = Color.Lerp(resultColor, startColor, (ElapsedTime / end));
-                yield return null;
-            }
-            image.enabled = !pingPong;
-        }
-
+        /// <summary>
+        /// StartCoroutine if she already played
+        /// </summary>
         public void StartLerp()
         {
             if (!busy || !pingPong)
             {
                 if (coroutine != null)
                 {
-                    StopCoroutine(LerpImage());
+                    StopCoroutine(coroutine);
                 }
-                coroutine = StartCoroutine(LerpImage());
+                coroutine = pingPong ? StartCoroutine(LerpPing()) : StartCoroutine(LerpOnce());
             }
+        }
+
+        //FIXME: This part code is soooooooooooooooooo bad >:)
+        private IEnumerator LerpOnce()
+        {
+            float ElapsedTime = 0f;
+            float end = Time.unscaledDeltaTime + durationAnim;
+            busy = true;
+            while (ElapsedTime < end)
+            {
+                ElapsedTime += Time.deltaTime;
+                image.color = Color.Lerp(startColor, resultColor, (ElapsedTime / end));
+                yield return null;
+            }
+            busy = false;
+        }
+
+        private IEnumerator LerpPing()
+        {
+            float ElapsedTime = 0f;
+            float end = Time.unscaledDeltaTime + durationAnim;
+            busy = true;
+            image.enabled = true;
+            while (ElapsedTime < end)
+            {
+                ElapsedTime += Time.deltaTime;
+                image.color = Color.Lerp(startColor, resultColor, (ElapsedTime / end));
+                yield return null;
+            }
+            ElapsedTime = 0f;
+            end = Time.unscaledDeltaTime + durationAnim;
+            while (ElapsedTime < end)
+            {
+                ElapsedTime += Time.deltaTime;
+                image.color = Color.Lerp(resultColor, startColor, (ElapsedTime / end));
+                yield return null;
+            }
+            busy = false;
+            image.enabled = false;
         }
     }
 }
