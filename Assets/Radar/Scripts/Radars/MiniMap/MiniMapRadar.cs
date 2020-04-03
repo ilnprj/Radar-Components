@@ -12,15 +12,14 @@ namespace RadarComponents
         [SerializeField]
         private float distanceInsideView = 10f;
 
-        [Range(1f, 20f)]
         [SerializeField]
-        private float offsetPosition = 2f;
+        private Vector2 offsetVector = default;
 
-        public float OffsetPosition
+        public Vector2 OffsetVector
         {
             get
             {
-                return offsetPosition;
+                return offsetVector;
             }
         }
 
@@ -30,6 +29,7 @@ namespace RadarComponents
                 return distanceInsideView;
             }
         }
+
 
         [Header("Size Target View:")]
         [SerializeField]
@@ -43,9 +43,45 @@ namespace RadarComponents
             }
         }
 
+
+        [Header("Circle Radar Option:")]
+        [SerializeField]
+        [Space(10)]
+        private bool circleRadar = default;
+
+        public bool CircleRadar
+        {
+            get
+            {
+                return circleRadar;
+            }
+        }
+
+        [SerializeField]
+        private float circleCenter = default;
+
+        public float CircleCenter
+        {
+            get
+            {
+                return circleCenter;
+            }
+        }
+
+        [SerializeField]
+        private Vector2 circlePosition = default;
+
+        public Vector2 CirclePosition
+        {
+            get
+            {
+                return circlePosition;
+            }
+        }
+
         public override void OnUpdateRadar()
         {
-           //NOTE: All functional work in items
+            //NOTE: All functional work in items
         }
     }
 }

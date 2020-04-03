@@ -36,6 +36,7 @@ namespace RadarComponents
             base.Awake();
             rectPositionView = GetComponent<RectTransform>();
             imageTargetView = GetComponent<Image>();
+            imageTargetView.preserveAspect = true;
             radarContainer = GetComponentInParent<MiniMapRadar>();
         }
 
@@ -54,8 +55,6 @@ namespace RadarComponents
             Vector3 targetPos = CurrentTarget.TransformTarget.position;
             Vector3 normalisedTargetPosiiton = NormalisedPosition(playerPos, targetPos);
             Vector2 targetPosition = CalculateBlipPosition(normalisedTargetPosiiton);
-            targetPosition.x = CheckBorder(targetPosition.x, backgroundRadar.rectTransform.rect.width);
-            targetPosition.y = CheckBorder(targetPosition.y, backgroundRadar.rectTransform.rect.height);
 
             if (radarContainer.TargetsFadeOut)
             {
@@ -64,15 +63,44 @@ namespace RadarComponents
                 imageTargetView.enabled = distance <= radarContainer.RadarViewDistance;
             }
 
+            if (!radarContainer.CircleRadar)
+            {
+                targetPosition.x = CheckBorder(targetPosition.x, backgroundRadar.rectTransform.rect.width);
+                targetPosition.y = CheckBorder(targetPosition.y, backgroundRadar.rectTransform.rect.height);
+            }
+            else
+            {
+                ClampPositionToCircle(new Vector2(60f,60f), 60f, ref targetPosition);
+            }
+            
             UpdateResultPosition(targetPosition);
         }
 
         /// <summary>
-        /// Controls the location of the target within 
+        /// Method using only for Circle Radar
+        /// </summary>
+        public void ClampPositionToCircle(Vector2 center, float radius, ref Vector2 position)
+        {
+            // Calculate the offset vector from the center of the circle to our position
+            Vector2 offset = position - center;
+            // Calculate the linear distance of this offset vector
+            float distance = offset.magnitude;
+            if (radius < distance)
+            {
+                // If the distance is more than our radius we need to clamp
+                // Calculate the direction to our position
+                Vector2 direction = offset / distance;
+                // Calculate our new position using the direction to our old position and our radius
+                position = center + direction * radius;
+            }
+        }
+
+        /// <summary>
+        /// Controls the location of the target within. Use only for Square radar
         /// </summary>
         private float CheckBorder(float position, float border)
         {
-            if (position + targetWidth >= border)
+            if (position + targetWidth > border)
             {
                 position = border - targetWidth;
             }
@@ -84,10 +112,15 @@ namespace RadarComponents
             return position;
         }
 
+        /// <summary>
+        /// Final set position target in radar
+        /// </summary>
+        /// <param name="position"></param>
         private void UpdateResultPosition(Vector2 position)
         {
             rectPositionView.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Left, position.x, targetWidth);
             rectPositionView.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, position.y, targetHeight);
+            UpdateExtensions();
         }
 
         private Vector3 NormalisedPosition(Vector3 playerPos, Vector3 targetPos)
@@ -116,8 +149,8 @@ namespace RadarComponents
             tarY *= radarHeight / 2;
 
             // Offset
-            tarX += radarWidth / radarContainer.OffsetPosition;
-            tarY += radarHeight / radarContainer.OffsetPosition;
+            tarX += radarWidth / radarContainer.OffsetVector.x;
+            tarY += radarHeight / radarContainer.OffsetVector.y;
 
             return new Vector2(tarX, tarY);
         }
