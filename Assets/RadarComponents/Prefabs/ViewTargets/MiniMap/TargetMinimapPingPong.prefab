@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 50335833082844626}
   - component: {fileID: 61698727894260602}
   m_Layer: 5
-  m_Name: TargetMinimap
+  m_Name: TargetMinimapPingPong
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -103,6 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86b7f0d3abddb6547b322d1593d03342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pingPong: 1
   durationAnim: 0.5
   startColor:
     serializedVersion: 2
@@ -128,8 +129,8 @@ Rigidbody2D:
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_SleepingMode: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!61 &61698727894260602
 BoxCollider2D:
