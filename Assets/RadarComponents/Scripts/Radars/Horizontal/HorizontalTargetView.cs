@@ -1,4 +1,9 @@
-﻿using UnityEngine;
+﻿// MIT License
+// https://gitlab.com/ilnprj 
+// Copyright (c) 2020 ilnprj
+
+
+using UnityEngine;
 
 namespace RadarComponents
 {
@@ -25,7 +30,7 @@ namespace RadarComponents
         }
 
         /// <summary>
-        /// Метод отрабатывающий в случае если цель или игрок - изменили свое положение
+        /// Method calls then target or player moving
         /// </summary>
         public override void UpdateViewTarget()
         {
@@ -50,8 +55,9 @@ namespace RadarComponents
             // Distance
             float dis = Vector3.Distance(playerTransform.position, targetTransform.position);
             float size = maxSize - dis / 4;
-            size = Mathf.Clamp(size, minSize, maxSize);
 
+            //TODO: Change size with distance
+            size = Mathf.Clamp(size, minSize, maxSize);
             UpdateExtensions();
         }
     }

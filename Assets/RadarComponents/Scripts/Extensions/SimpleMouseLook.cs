@@ -1,5 +1,11 @@
-﻿using UnityEngine;
+﻿// MIT License
+// https://gitlab.com/ilnprj 
+// Copyright (c) 2020 ilnprj
+using UnityEngine;
 
+/// <summary>
+/// Simple Mouse Look script
+/// </summary>
 public class SimpleMouseLook : MonoBehaviour
 {
     [SerializeField]
@@ -26,8 +32,8 @@ public class SimpleMouseLook : MonoBehaviour
         float mouseX = Input.GetAxis("Mouse X");
         float mouseY = -Input.GetAxis("Mouse Y");
 
-        rotY += mouseX * mouseSensitivity * Time.deltaTime;
-        rotX += mouseY * mouseSensitivity * Time.deltaTime;
+        rotY += mouseX * mouseSensitivity * Time.fixedDeltaTime;
+        rotX += mouseY * mouseSensitivity * Time.fixedDeltaTime;
 
         rotX = Mathf.Clamp(rotX, -clampAngle, clampAngle);
 

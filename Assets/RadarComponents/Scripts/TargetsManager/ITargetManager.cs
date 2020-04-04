@@ -1,10 +1,14 @@
-﻿using System;
+﻿// MIT License
+// https://gitlab.com/ilnprj 
+// Copyright (c) 2020 ilnprj
+
+using System;
 using System.Collections.Generic;
 
 namespace RadarComponents
 {
     /// <summary>
-    /// Контракты для работы таргет менеджера
+    /// Interface for Target Manager base functional
     /// </summary>
     public interface ITargetManager
     {

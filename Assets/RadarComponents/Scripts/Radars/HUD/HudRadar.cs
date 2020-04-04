@@ -1,4 +1,9 @@
-﻿namespace RadarComponents
+﻿// MIT License
+// https://gitlab.com/ilnprj 
+// Copyright (c) 2020 ilnprj
+
+
+namespace RadarComponents
 {
     /// <summary>
     /// Realization of an abstract radar as Hud 

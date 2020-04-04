@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿// MIT License
+// https://gitlab.com/ilnprj 
+// Copyright (c) 2020 ilnprj
+
+using UnityEngine;
 
 namespace RadarComponents
 {

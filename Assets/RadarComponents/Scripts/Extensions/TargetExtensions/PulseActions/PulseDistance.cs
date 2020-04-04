@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿// MIT License
+// https://gitlab.com/ilnprj 
+// Copyright (c) 2020 ilnprj
+
+using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.Events;

@@ -1,11 +1,15 @@
-﻿using UnityEngine;
+﻿// MIT License
+// https://gitlab.com/ilnprj 
+// Copyright (c) 2020 ilnprj
+
+using UnityEngine;
 using System;
 
 namespace RadarComponents
 {
     /// <summary>
-    /// Контейнер хранящий в себе реализацию ITargetManager. 
-    /// Вообще это нужно сделать через инъекцию
+    /// Container stores the implementation of ITargetManager.
+    /// In general, this must be done through injection
     /// </summary>
     public class ContainerTargetManager : MonoBehaviour
     {
@@ -19,7 +23,7 @@ namespace RadarComponents
             IsInited = true;
         }
 
-        //NOTE: Из-за того что сначала идет определение интерфейса через GetComponent - все таргеты не успевают получить экземпляр, поэтому нужен статус IsInited
+        //NOTE: Due to the fact that the interface is first defined via GetComponent, all targets do not have time to receive an instance, therefore, the status IsInited is required
         private void Start()
         {
             if (IsInited)
