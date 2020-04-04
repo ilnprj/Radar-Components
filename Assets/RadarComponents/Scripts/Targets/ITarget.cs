@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace RadarComponents
 {
     /// <summary>
-    /// Контракт для работы классов - цель
+    /// Interface for the implementation of the basic functions of the target
     /// </summary>
     public interface ITarget
     {

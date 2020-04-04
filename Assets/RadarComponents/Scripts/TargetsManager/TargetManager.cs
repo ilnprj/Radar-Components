@@ -5,38 +5,33 @@ using UnityEngine;
 namespace RadarComponents
 {
     /// <summary>
-    /// Реализация TargetManager в простом виде
+    /// Generalization ITargetManager
     /// </summary>
     public class TargetManager : MonoBehaviour, ITargetManager
     {        
         public List<ITarget> Targets { get; private set; } = new List<ITarget>();
         public event Action<ITarget> onAddTarget = delegate { };
         public event Action<ITarget> onRemoveTarget = delegate { };
-
-        [SerializeField]
-        private int countTargets = 0;
+        public int CountTargets { get; private set; } = 0;
 
         /// <summary>
-        /// Добавить цель
+        /// Add Target
         /// </summary>
-        /// <param name="target"></param>
         public void AddTarget(ITarget target)
         {
             Targets.Add(target);
             onAddTarget(target);
-            //TODO: Удалить после того как фича будет отлажена
-            countTargets++;
+            CountTargets++;
         }
 
         /// <summary>
-        /// Убрать цель
+        /// Remove Target
         /// </summary>
-        /// <param name="target"></param>
         public void RemoveTarget(ITarget target)
         {
             Targets.Remove(target);
             onRemoveTarget(target);
-            countTargets--;
+            CountTargets--;
         }
     }
 }

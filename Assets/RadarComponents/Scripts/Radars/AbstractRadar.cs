@@ -8,9 +8,6 @@ namespace RadarComponents
     [RequireComponent(typeof(ContainerTargetsView))]
     public abstract class AbstractRadar : MonoBehaviour
     {
-        [SerializeField]
-        private bool targetsFadeOut = default;
-
         public bool TargetsFadeOut
         {
             get
@@ -20,9 +17,10 @@ namespace RadarComponents
         }
 
         protected PlayerLocator locator = null;
-        protected ITargetManager targetManager = null;
         protected ContainerTargetsView containerViews;
 
+        [SerializeField]
+        private bool targetsFadeOut = default;
         private ContainerTargetManager containerTargets;
 
         protected virtual void Awake()
@@ -34,8 +32,7 @@ namespace RadarComponents
 
         protected virtual void Start()
         {
-            targetManager = containerTargets.TargetManager;
-            containerViews.SetTargetManager(targetManager);
+            containerViews.SetTargetManager(containerTargets.TargetManager);
         }
 
         private void CheckLocator()
@@ -63,7 +60,7 @@ namespace RadarComponents
         }
 
         /// <summary>
-        /// Обновить данные радара в его реализации
+        /// Update information on radar
         /// </summary>
         public abstract void OnUpdateRadar();
     }

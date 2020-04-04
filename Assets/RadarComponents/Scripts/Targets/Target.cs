@@ -4,8 +4,8 @@ using System.Collections.Generic;
 namespace RadarComponents
 {
     /// <summary>
-    /// Класс цели, регистрирует при появлении на сцене цель в Менеджере и убирает ее оттуда при деактивации
-    /// Цель может опционально обновлять локатор игрока сама, если обладает возможностью передвижения
+    /// Class of the target is registered when the target appears on the scene in the manager, and removes it from there upon deactivation.
+    /// The target can optionally update the player’s locator itself, if it has the ability to move
     /// </summary>
     public class Target : MonoBehaviour, ITarget
     {
@@ -68,7 +68,7 @@ namespace RadarComponents
         }
 
         /// <summary>
-        /// Что делаем при активации цели на сцене
+        /// Actions when activating a target on a scene
         /// </summary>
         public void OnTargetEnable()
         {
@@ -76,7 +76,7 @@ namespace RadarComponents
         }
 
         /// <summary>
-        /// Что делаем при деактивации цели на сцене (Метод можно вызвать и в случае если цель может быть активна но не используема)
+        /// Actions when the target is deactivated on the scene(The method can also be called if the target can be active but not used)
         /// </summary>
         public void OnTargetDisable()
         {
