@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace RadarComponents
 {
+    /// <summary>
+    /// Line 2DRaycast with circle rotation 
+    /// </summary>
     public class LineRaycast : MonoBehaviour
     {
         [SerializeField]
@@ -11,7 +14,7 @@ namespace RadarComponents
         private float speed = default;
 
         [SerializeField]
-        private float distanceRay = 150f;
+        private float distanceRay = 75f;
 
         private void Update()
         {

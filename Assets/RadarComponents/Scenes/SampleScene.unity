@@ -1000,7 +1000,7 @@ GameObject:
   - component: {fileID: 289344863}
   - component: {fileID: 289344862}
   m_Layer: 5
-  m_Name: RadarPing (1)
+  m_Name: RadarPingImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1258,7 +1258,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationVector: {x: 0, y: 0, z: -1}
   speed: 1
-  distanceRay: 150
+  distanceRay: 80
 --- !u!1 &472638488
 GameObject:
   m_ObjectHideFlags: 0
