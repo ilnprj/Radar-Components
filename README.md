@@ -1,8 +1,10 @@
 # RadarComponents
 
 ## A set of automatic radars tied to a single player and working with a dynamic list of targets.  
-[Actual Unity Package - 1.0.1](https://gitlab.com/ilnprj/RadarComponents/-/tree/release)  
-**List of features:**    
+- [Actual Unity Package - 1.0.1](https://gitlab.com/ilnprj/RadarComponents/-/tree/release)  
+- [UML Diagram](https://gitlab.com/ilnprj/RadarComponents/uploads/11d07a02cb4f442b4f9948ed88e4ceea/Untitled_Diagram__4_.png)  
+
+### List of features:  
 - Horizontal Compass  
 ![Image description](https://gitlab.com/ilnprj/RadarComponents/uploads/0e0087ca06ef08a72c02091cd8b661a2/HorizontalExample.gif)  
 - Circle Compass  
